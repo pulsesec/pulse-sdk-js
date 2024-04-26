@@ -10,7 +10,6 @@ export class PulseAPI {
 	constructor(siteKey: string, secretKey: string) {
 		this.http = axios.create({
 			baseURL: "https://www.pulsesecurity.org",
-			validateStatus: null,
 		});
 
 		this.siteKey = siteKey;
@@ -46,5 +45,3 @@ export class PulseAPI {
 		return data.isBot;
 	}
 }
-
-export { APIError, TokenNotFoundError, TokenUsedError } from "./error";

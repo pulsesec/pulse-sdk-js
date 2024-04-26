@@ -1,24 +1,31 @@
 {
-  "name": "@pulsesec/api",
-  "version": "0.0.1",
-  "description": "Pulse Security - JS SDK API",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pulsesec/pulse-sdk-js.git"
-  },
-  "exports": {
-    ".": {
-      "require": "./dist/index.js",
-      "import": "./dist/index.js"
-    }
-  },
-  "author": "Pulse Security <contact@pulsesecurity.org>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/pulsesec/pulse-sdk-js/issues"
-  },
-  "homepage": "https://github.com/pulsesec/pulse-sdk-js#readme",
-  "dependencies": {
-    "axios": "^1.6.8"
-  }
+	"name": "@pulsesec/api",
+	"version": "0.0.1",
+	"description": "Pulse Security - JS SDK API",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/pulsesec/pulse-sdk-js.git"
+	},
+	"scripts": {
+		"test": "jest"
+	},
+	"exports": {
+		".": {
+			"require": "./src/index.ts",
+			"import": "./src/index.ts"
+		},
+		"./types": {
+			"require": "./src/types.ts",
+			"import": "./src/types.ts"
+		}
+	},
+	"author": "Pulse Security <contact@pulsesecurity.org>",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/pulsesec/pulse-sdk-js/issues"
+	},
+	"homepage": "https://github.com/pulsesec/pulse-sdk-js#readme",
+	"dependencies": {
+		"axios": "^1.6.8"
+	}
 }

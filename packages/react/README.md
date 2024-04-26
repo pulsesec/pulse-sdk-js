@@ -12,18 +12,18 @@ $ npm i @pulsesec/react
 import { PulseScript } from "@pulsesec/react";
 
 export default function RootLayout({
-  children,
+	children,
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <head>
-        <PulseScript sitekey={process.env.PULSE_SITE_KEY} />
-      </head>
-      <body>{children}</body>
-    </html>
-  );
+	return (
+		<html lang="en">
+			<head>
+				<PulseScript sitekey={process.env.PULSE_SITE_KEY} />
+			</head>
+			<body>{children}</body>
+		</html>
+	);
 }
 ```
 
@@ -31,6 +31,6 @@ export default function RootLayout({
 
 ```ts
 window.onpulse((token: string) => {
-  console.log("User token", token);
+	console.log("User token", token);
 });
 ```
