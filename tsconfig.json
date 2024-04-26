@@ -1,0 +1,3 @@
+{
+  "extends": "@pulsesec/tsconfig/base.json"
+}

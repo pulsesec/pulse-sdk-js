@@ -1,0 +1,4 @@
+{
+  "extends": "@pulsesec/tsconfig/base.json",
+  "include": ["src"]
+}
