@@ -1,6 +1,7 @@
-# Pulse Security - JS SDK
+# Pulse Security - JavaScript SDK
 
-## Packages
+## Navigate
 
--   ### API - [@pulsesec/api](./packages/api)
--   ### React - [@pulsesec/react](./packages/react/)
+-   ## > **API Package** | [@pulsesec/api](./packages/api)
+
+-   ## > **React Package** | [@pulsesec/react](./packages/react/)
