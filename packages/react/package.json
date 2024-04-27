@@ -3,7 +3,7 @@
 	"version": "0.0.2",
 	"description": "Pulse Security - JS SDK React",
 	"peerDependencies": {
-		"react": "^17.0.2"
+		"react": ">=17.0.2"
 	},
 	"scripts": {
 		"build": "tsup",
