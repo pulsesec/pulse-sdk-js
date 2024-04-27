@@ -1,6 +1,6 @@
 {
 	"name": "@pulsesec/react",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "Pulse Security - JS SDK React",
 	"peerDependencies": {
 		"react": ">=17.0.2"
