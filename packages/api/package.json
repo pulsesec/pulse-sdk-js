@@ -1,6 +1,6 @@
 {
 	"name": "@pulsesec/api",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "Pulse Security - JS SDK API",
 	"repository": {
 		"type": "git",
