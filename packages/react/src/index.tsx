@@ -7,8 +7,8 @@ declare global {
 }
 
 function preamble() {
-	let token: string;
-	let callback: PulseCallback;
+	let token: string | undefined;
+	let callback: PulseCallback | undefined;
 	window.onpulse =
 		window.onpulse ||
 		function (arg) {
