@@ -16,7 +16,7 @@ const client = new PulseAPI(process.env.PULSE_SITE_KEY, process.env.PULSE_SECRET
 async function classify(token: string): bool {
 	try {
 		const isBot = await client.classify(token);
-		console.log("Is token a bot?", isBot);
+		return isBot;
 	} catch (err) {
 		if (err instanceof TokenNotFoundError) {
 			throw new Error("Token not found");
