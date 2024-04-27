@@ -9,7 +9,7 @@ export class PulseAPI {
 
 	constructor(siteKey: string, secretKey: string) {
 		this.http = axios.create({
-			baseURL: "https://www.pulsesecurity.org",
+			baseURL: "https://api.pulsesecurity.org",
 		});
 
 		this.siteKey = siteKey;
@@ -27,7 +27,11 @@ export class PulseAPI {
 			headers: { "Content-Type": "application/json" },
 		});
 
-		const data = response.data as APIClassifyResponse;
+		const data = response.data as APIClassifyResponse | undefined;
+		if (!data) {
+			throw new APIError({ code: "UNKNOWN", error: "No data returned" });
+		}
+
 		if ("errors" in data) {
 			const error = data.errors[0];
 			if (!error) {
