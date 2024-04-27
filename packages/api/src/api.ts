@@ -10,6 +10,7 @@ export class PulseAPI {
 	constructor(siteKey: string, secretKey: string) {
 		this.http = axios.create({
 			baseURL: "https://api.pulsesecurity.org",
+			validateStatus: null,
 		});
 
 		this.siteKey = siteKey;
