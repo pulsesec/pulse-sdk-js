@@ -1,2 +1,2 @@
-export { PulseAPI } from "./api";
-export { APIError, TokenNotFoundError, TokenUsedError, TokenExpiredError } from "./error";
+export { Pulse } from "./api";
+export { PulseError, TokenNotFoundError, TokenUsedError, TokenExpiredError } from "./error";

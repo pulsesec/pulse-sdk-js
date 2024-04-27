@@ -1,8 +1,8 @@
 import axios, { AxiosInstance } from "axios";
-import { APIError, errors } from "./error";
+import { PulseError, errors } from "./error";
 import { APIClassifyPayload, APIClassifyResponse } from "./types";
 
-export class PulseAPI {
+export class Pulse {
 	private http: AxiosInstance;
 	private siteKey: string;
 	private secretKey: string;
@@ -30,13 +30,13 @@ export class PulseAPI {
 
 		const data = response.data as APIClassifyResponse | undefined;
 		if (!data) {
-			throw new APIError({ code: "UNKNOWN", error: "No data returned" });
+			throw new PulseError({ code: "UNKNOWN", error: "No data returned" });
 		}
 
 		if ("errors" in data) {
 			const error = data.errors[0];
 			if (!error) {
-				throw new APIError({ code: "UNKNOWN", error: "Error not provided" });
+				throw new PulseError({ code: "UNKNOWN", error: "Error not provided" });
 			}
 
 			const errorClass = errors[error.code];
@@ -44,7 +44,7 @@ export class PulseAPI {
 				throw new errorClass(error);
 			}
 
-			throw new APIError(error);
+			throw new PulseError(error);
 		}
 
 		return data.isBot;

@@ -9,13 +9,13 @@ $ npm i @pulsesec/api
 ## Example
 
 ```ts
-import { PulseAPI, TokenNotFoundError, TokenUsedError, TokenExpiredError } from "@pulsesec/api";
+import { Pulse, TokenNotFoundError, TokenUsedError, TokenExpiredError } from "@pulsesec/api";
 
-const client = new PulseAPI(process.env.PULSE_SITE_KEY, process.env.PULSE_SECRET_KEY);
+const pulse = new Pulse(process.env.PULSE_SITE_KEY, process.env.PULSE_SECRET_KEY);
 
 async function classify(token: string): bool {
 	try {
-		const isBot = await client.classify(token);
+		const isBot = await pulse.classify(token);
 		return isBot;
 	} catch (err) {
 		if (err instanceof TokenNotFoundError) {

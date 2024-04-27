@@ -1,6 +1,6 @@
 import { APIErrorData } from "./types";
 
-export class APIError extends Error {
+export class PulseError extends Error {
 	public code: string;
 	constructor(data: APIErrorData) {
 		super(data.error);
@@ -8,13 +8,13 @@ export class APIError extends Error {
 	}
 }
 
-export class TokenNotFoundError extends APIError {}
+export class TokenNotFoundError extends PulseError {}
 
-export class TokenUsedError extends APIError {}
+export class TokenUsedError extends PulseError {}
 
-export class TokenExpiredError extends APIError {}
+export class TokenExpiredError extends PulseError {}
 
-export const errors: Record<string, new (data: APIErrorData) => APIError> = {
+export const errors: Record<string, new (data: APIErrorData) => PulseError> = {
 	TOKEN_NOT_FOUND: TokenNotFoundError,
 	TOKEN_USED: TokenUsedError,
 	TOKEN_EXPIRED: TokenExpiredError,
