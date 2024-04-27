@@ -1,8 +1,6 @@
-import { PulseAPI, TokenNotFoundError, TokenUsedError } from "@pulsesec/api";
+import { PulseAPI, TokenNotFoundError, TokenUsedError, TokenExpiredError } from "@pulsesec/api";
 import type { APIClassifyResponse } from "@pulsesec/api/types";
 import mockAxios, { HttpResponse } from "jest-mock-axios";
-import { TokenExpiredError } from "../src/error";
-import { mock } from "node:test";
 
 const testSiteKey = "siteKey";
 const testSiteSecret = "siteSecret";

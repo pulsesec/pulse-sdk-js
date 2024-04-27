@@ -47,4 +47,4 @@ export class PulseAPI {
 	}
 }
 
-export { APIError, TokenNotFoundError, TokenUsedError } from "./error";
+export { APIError, TokenNotFoundError, TokenUsedError, TokenExpiredError } from "./error";
