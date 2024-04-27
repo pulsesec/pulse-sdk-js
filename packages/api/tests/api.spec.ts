@@ -1,5 +1,4 @@
 import { PulseAPI, TokenNotFoundError, TokenUsedError, TokenExpiredError } from "@pulsesec/api";
-import type { APIClassifyResponse } from "@pulsesec/api/types";
 import mockAxios, { HttpResponse } from "jest-mock-axios";
 
 const testSiteKey = "siteKey";
@@ -12,7 +11,7 @@ describe("API", () => {
 		const result = api.classify(testToken);
 
 		const response: HttpResponse = {
-			data: <APIClassifyResponse>{
+			data: {
 				isBot: true,
 			},
 		};
@@ -35,7 +34,7 @@ describe("API", () => {
 			const result = api.classify(testToken);
 
 			const response: HttpResponse = {
-				data: <APIClassifyResponse>{
+				data: {
 					errors: [
 						{
 							code: errorCode,
