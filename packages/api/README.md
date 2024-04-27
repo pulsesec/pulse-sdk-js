@@ -19,18 +19,15 @@ async function classify(token: string): bool {
 		console.log("Is token a bot?", isBot);
 	} catch (err) {
 		if (err instanceof TokenNotFoundError) {
-			console.log("Token not found");
-			return;
+			throw new Error("Token not found");
 		}
 
 		if (err instanceof TokenUsedError) {
-			console.log("Token already used");
-			return;
+			throw new Error("Token already used");
 		}
 
 		if (err instanceof TokenExpiredError) {
-			console.log("Token expired");
-			return;
+			throw new Error("Token expired");
 		}
 
 		throw err;
