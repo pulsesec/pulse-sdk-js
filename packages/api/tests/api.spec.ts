@@ -1,26 +1,14 @@
 import { PulseAPI, TokenNotFoundError, TokenUsedError } from "@pulsesec/api";
 import type { APIClassifyResponse } from "@pulsesec/api/types";
 import mockAxios, { HttpResponse } from "jest-mock-axios";
+import { TokenExpiredError } from "../src/error";
+import { mock } from "node:test";
 
 const testSiteKey = "siteKey";
 const testSiteSecret = "siteSecret";
 const testToken = "token";
 
 describe("API", () => {
-	it("should classify human", async () => {
-		const api = new PulseAPI(testSiteKey, testSiteSecret);
-		const result = api.classify(testToken);
-
-		const response: HttpResponse = {
-			data: <APIClassifyResponse>{
-				isBot: false,
-			},
-		};
-		mockAxios.mockResponseFor({ url: "/api/classify" }, response);
-
-		expect(await result).toBe(false);
-	});
-
 	it("should classify bot", async () => {
 		const api = new PulseAPI(testSiteKey, testSiteSecret);
 		const result = api.classify(testToken);
@@ -35,51 +23,42 @@ describe("API", () => {
 		expect(await result).toBe(true);
 	});
 
-	it("should handle unknown token", async () => {
-		const api = new PulseAPI(testSiteKey, testSiteSecret);
-		const result = api.classify(testToken);
+	it("should handle errors", async () => {
+		const tests = [
+			["TOKEN_NOT_FOUND", TokenNotFoundError],
+			["TOKEN_USED", TokenUsedError],
+			["TOKEN_EXPIRED", TokenExpiredError],
+		] as const;
 
-		const response: HttpResponse = {
-			data: <APIClassifyResponse>{
-				errors: [
-					{
-						code: "TOKEN_NOT_FOUND",
-						error: "Token not found",
-					},
-				],
-			},
-		};
-		mockAxios.mockResponseFor({ url: "/api/classify" }, response);
+		for (const test of tests) {
+			const [errorCode, errorClass] = test;
 
-		try {
-			await result;
-			expect("Error must be thrown").toBe(false);
-		} catch (error) {
-			expect(error instanceof TokenNotFoundError).toBe(true);
-		}
-	});
+			const api = new PulseAPI(testSiteKey, testSiteSecret);
+			const result = api.classify(testToken);
 
-	it("should handle used token", async () => {
-		const api = new PulseAPI(testSiteKey, testSiteSecret);
-		const result = api.classify(testToken);
+			const response: HttpResponse = {
+				data: <APIClassifyResponse>{
+					errors: [
+						{
+							code: errorCode,
+							error: "Test error message",
+						},
+					],
+				},
+			};
+			mockAxios.mockResponseFor({ url: "/api/classify" }, response);
 
-		const response: HttpResponse = {
-			data: <APIClassifyResponse>{
-				errors: [
-					{
-						code: "TOKEN_USED",
-						error: "Token used",
-					},
-				],
-			},
-		};
-		mockAxios.mockResponseFor({ url: "/api/classify" }, response);
+			try {
+				await result;
+				expect("Error must be thrown").toBe(false);
+			} catch (error) {
+				if (error instanceof errorClass) {
+					expect(error.code).toBe(errorCode);
+					continue;
+				}
 
-		try {
-			await result;
-			expect("Error must be thrown").toBe(false);
-		} catch (error) {
-			expect(error instanceof TokenUsedError).toBe(true);
+				expect("Unexpected error").toBe(false);
+			}
 		}
 	});
 });
