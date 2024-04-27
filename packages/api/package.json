@@ -1,24 +1,25 @@
 {
 	"name": "@pulsesec/api",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "Pulse Security - JS SDK API",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/pulsesec/pulse-sdk-js.git"
 	},
 	"scripts": {
+		"build": "tsup",
+		"prepublish": "npm run build",
 		"test": "jest"
 	},
-	"exports": {
-		".": {
-			"require": "./src/index.ts",
-			"import": "./src/index.ts"
-		},
-		"./types": {
-			"require": "./src/types.ts",
-			"import": "./src/types.ts"
-		}
+	"publishConfig": {
+		"access": "public"
 	},
+	"main": "./dist/index.js",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist"
+	],
 	"author": "Pulse Security <contact@pulsesecurity.org>",
 	"license": "MIT",
 	"bugs": {
@@ -27,5 +28,8 @@
 	"homepage": "https://github.com/pulsesec/pulse-sdk-js#readme",
 	"dependencies": {
 		"axios": "^1.6.8"
+	},
+	"devDependencies": {
+		"tsup": "^8.0.2"
 	}
 }

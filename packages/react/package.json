@@ -1,28 +1,36 @@
 {
-  "name": "@pulsesec/react",
-  "version": "0.0.1",
-  "description": "Pulse Security - JS SDK React",
-  "peerDependencies": {
-    "react": "^17.0.2"
-  },
-  "exports": {
-    ".": {
-      "import": "./src/index.js",
-      "require": "./src/index.js"
-    }
-  },
-  "devDependencies": {
-    "@types/react": "^17.0.80",
-    "react": "^17.0.2"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pulsesec/pulse-sdk-js.git"
-  },
-  "author": "Pulse Security <contact@pulsesecurity.org> (<contact@pulsesecurity.org>)",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/pulsesec/pulse-sdk-js/issues"
-  },
-  "homepage": "https://github.com/pulsesec/pulse-sdk-js#readme"
+	"name": "@pulsesec/react",
+	"version": "0.0.2",
+	"description": "Pulse Security - JS SDK React",
+	"peerDependencies": {
+		"react": "^17.0.2"
+	},
+	"scripts": {
+		"build": "tsup",
+		"prepublish": "npm run build"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"main": "./dist/index.js",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"devDependencies": {
+		"@types/react": "^17.0.80",
+		"react": "^17.0.2",
+		"tsup": "^8.0.2"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/pulsesec/pulse-sdk-js.git"
+	},
+	"author": "Pulse Security <contact@pulsesecurity.org> (<contact@pulsesecurity.org>)",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/pulsesec/pulse-sdk-js/issues"
+	},
+	"homepage": "https://github.com/pulsesec/pulse-sdk-js#readme"
 }
