@@ -11,11 +11,7 @@ $ npm i @pulsesec/react
 ```tsx
 import { PulseScript } from "@pulsesec/react";
 
-export default function RootLayout({
-	children,
-}: Readonly<{
-	children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }): {
 	return (
 		<html lang="en">
 			<head>
