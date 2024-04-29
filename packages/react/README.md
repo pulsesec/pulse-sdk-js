@@ -23,10 +23,12 @@ export default function RootLayout({ children }): {
 }
 ```
 
-## Token Callback
+## Token Hook
 
 ```ts
-window.onpulse((token: string) => {
-	console.log("User token", token);
-});
+import { usePulse } from "@pulsesec/react";
+
+function YourComponent() {
+	const token = usePulse(); /* string | null */
+}
 ```
