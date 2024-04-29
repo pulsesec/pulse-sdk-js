@@ -25,6 +25,11 @@ export function PulseProvider({ children, siteKey, origin = "https://cdn.pulsese
 	const scriptRef = useRef<HTMLScriptElement | null>(null);
 
 	useEffect(() => {
+		const win = window as any as PulseWindow;
+		win.onpulseload = () => {
+			setPulseFn(() => win.onpulse);
+		};
+
 		if (scriptRef.current) {
 			return;
 		}
@@ -33,11 +38,6 @@ export function PulseProvider({ children, siteKey, origin = "https://cdn.pulsese
 		script.src = `${origin}/script/pulse.js`;
 		script.setAttribute("data-sitekey", siteKey);
 		script.async = true;
-
-		const win = window as any as PulseWindow;
-		win.onpulseload = () => {
-			setPulseFn(win.onpulse);
-		};
 
 		document.head.appendChild(script);
 	}, [setPulseFn]);

@@ -9,7 +9,7 @@ export const usePulse = () => {
 		context.onpulse?.((token) => {
 			setToken(token);
 		});
-	}, [setToken, context.onpulse]);
+	}, [setToken, context]);
 
 	return token;
 };
