@@ -29,6 +29,17 @@ export default function RootLayout({ children }): {
 import { usePulse } from "@pulsesec/react";
 
 function YourComponent() {
-	const token = usePulse(); /* string | null */
+	/* .. */
+
+	const token = usePulse();
+	useEffect(() => {
+		if (!token) {
+			return;
+		}
+
+		action(token).then(setResult);
+	}, [token]);
+
+	/* .. */
 }
 ```
