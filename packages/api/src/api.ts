@@ -17,7 +17,7 @@ export class Pulse {
 		this.secretKey = secretKey;
 	}
 
-	public async classify(token: string): Promise<boolean> {
+	public async classify(token: string, signal?: axios.GenericAbortSignal): Promise<boolean> {
 		const payload: APIClassifyPayload = {
 			token,
 			siteKey: this.siteKey,
@@ -26,6 +26,7 @@ export class Pulse {
 
 		const response = await this.http.post("/api/classify", payload, {
 			headers: { "Content-Type": "application/json" },
+			signal,
 		});
 
 		const data = response.data as APIClassifyResponse | undefined;
