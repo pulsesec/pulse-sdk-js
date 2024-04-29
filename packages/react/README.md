@@ -9,16 +9,13 @@ $ npm i @pulsesec/react
 ## Example
 
 ```tsx
-import { PulseScript } from "@pulsesec/react";
+import { PulseProvider } from "@pulsesec/react";
 
-export default function RootLayout({ children }): {
+export function App() {
 	return (
-		<html lang="en">
-			<head>
-				<PulseScript sitekey={process.env.PULSE_SITE_KEY} />
-			</head>
-			<body>{children}</body>
-		</html>
+		<PulseProvider siteKey={process.env.PULSE_SITE_KEY}>
+			<YourApp />
+		</PulseProvider>
 	);
 }
 ```
