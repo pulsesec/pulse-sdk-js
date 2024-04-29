@@ -1,15 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { PulseContext } from "./provider";
 
 export const usePulse = () => {
 	const context = useContext(PulseContext);
-	const [token, setToken] = useState<string | null>(null);
+	if (!context) {
+		throw new Error("usePulse must be used within a PulseProvider");
+	}
 
-	useEffect(() => {
-		context.onpulse?.((token) => {
-			setToken(token);
-		});
-	}, [setToken, context]);
-
-	return token;
+	return context.token;
 };

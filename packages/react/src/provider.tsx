@@ -1,18 +1,13 @@
 import React, { ReactNode, useRef, createContext, useEffect, useState } from "react";
 
 type PulseCallback = (token: string) => void;
-
 type PulseWindow = Window & { onpulseload: () => void; onpulse: (cb: PulseCallback) => void };
 
 export type Context = {
-	onpulse?: (cb: PulseCallback) => void;
+	token: string | null;
 };
 
-export const PulseContext = createContext<Context>({
-	onpulse: () => {
-		throw Error("onPulse was called before the PulseProvider was initialized");
-	},
-});
+export const PulseContext = createContext<Context | undefined>(undefined);
 
 type Props = {
 	children: ReactNode;
@@ -21,13 +16,15 @@ type Props = {
 };
 
 export function PulseProvider({ children, siteKey, origin = "https://cdn.pulsesecurity.org" }: Props) {
-	const [pulseFn, setPulseFn] = useState<((cb: PulseCallback) => void) | undefined>(undefined);
+	const [token, setToken] = useState<string | null>(null);
 	const scriptRef = useRef<HTMLScriptElement | null>(null);
 
 	useEffect(() => {
 		const win = window as any as PulseWindow;
 		win.onpulseload = () => {
-			setPulseFn(() => win.onpulse);
+			win.onpulse((token: string) => {
+				setToken(() => token);
+			});
 		};
 
 		if (scriptRef.current) {
@@ -40,10 +37,10 @@ export function PulseProvider({ children, siteKey, origin = "https://cdn.pulsese
 		script.async = true;
 
 		document.head.appendChild(script);
-	}, [setPulseFn]);
+	}, [setToken]);
 
 	const context: Context = {
-		onpulse: pulseFn,
+		token: token,
 	};
 
 	return <PulseContext.Provider value={context}>{children}</PulseContext.Provider>;
