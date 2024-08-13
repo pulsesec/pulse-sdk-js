@@ -1,6 +1,6 @@
 {
 	"name": "@pulsesec/sdk",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "Pulse Security - JS SDK",
 	"repository": {
 		"type": "git",
