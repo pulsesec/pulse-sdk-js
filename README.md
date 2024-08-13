@@ -10,27 +10,14 @@
 $ npm i @pulsesec/react @pulsesec/api
 ```
 
-## Provider Setup
-
-```tsx
-import { PulseProvider } from "@pulsesec/react";
-
-export function App() {
-	return (
-		<PulseProvider siteKey={process.env.PULSE_SITE_KEY}>
-			<YourApp />
-		</PulseProvider>
-	);
-}
-```
-
-## Token Hook
+## Client-Side Token Hook
 
 ```ts
 import { usePulse } from "@pulsesec/react";
 
 function YourComponent() {
-	const token = usePulse();
+	const token = usePulse(process.env.PULSE_SITE_KEY);
+
 	useEffect(() => {
 		if (!token) {
 			return;
@@ -41,7 +28,7 @@ function YourComponent() {
 }
 ```
 
-## Verification
+## Backend Verification
 
 ```ts
 import { Pulse, TokenNotFoundError, TokenUsedError, TokenExpiredError } from "@pulsesec/api";
