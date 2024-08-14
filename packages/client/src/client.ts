@@ -14,7 +14,7 @@ function createLoader(): Promise<PulseExecuteFn> {
 let onLoad: Promise<PulseExecuteFn> | undefined;
 
 export function Initialize(siteKey: string, origin: string = "https://cdn.pulsesecurity.org") {
-	if (onLoad || !global.window) {
+	if (onLoad || !globalThis.window || !globalThis.document) {
 		return;
 	}
 	onLoad = createLoader();
