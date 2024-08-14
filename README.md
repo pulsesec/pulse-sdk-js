@@ -7,24 +7,25 @@
 ## Installation
 
 ```sh
-$ npm i @pulsesec/react @pulsesec/api
+$ npm i @pulsesec/client @pulsesec/api
 ```
 
-## Client-Side Token Hook
+## Client-Side
 
 ```ts
-import { usePulse } from "@pulsesec/react";
+import pulse from "@pulsesec/client";
 
-function YourComponent() {
-	const token = usePulse(process.env.PULSE_SITE_KEY);
+// Initialize for your whole app (not recommended)
+pulse.Initialize(process.env.PULSE_SITE_KEY);
 
-	useEffect(() => {
-		if (!token) {
-			return;
-		}
+function pageWithProtectedEndpoint() {
+	// OR initialize whenever needed (recommended)
+	pulse.Initialize(process.env.PULSE_SITE_KEY);
 
-		protectedAction(token).then(setResult);
-	}, [token]);
+	async function protectedRequest() {
+		const token = await pulse.Execute();
+		// include token in your request
+	}
 }
 ```
 

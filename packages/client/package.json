@@ -1,10 +1,7 @@
 {
-	"name": "@pulsesec/react",
-	"version": "0.0.11",
-	"description": "Pulse Security - JS SDK React",
-	"peerDependencies": {
-		"react": ">=17.0.2"
-	},
+	"name": "@pulsesec/client",
+	"version": "0.0.1",
+	"description": "Pulse Security - JS Client SDK",
 	"scripts": {
 		"build": "tsup",
 		"prepublishOnly": "npm run build"
@@ -19,8 +16,6 @@
 		"dist"
 	],
 	"devDependencies": {
-		"@types/react": "^17.0.80",
-		"react": "^17.0.2",
 		"tsup": "^8.0.2"
 	},
 	"repository": {

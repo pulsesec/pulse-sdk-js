@@ -1,4 +1,0 @@
-{
-  "extends": "@pulsesec/tsconfig/react.json",
-  "include": ["src"]
-}
