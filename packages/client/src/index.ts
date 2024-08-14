@@ -1,2 +1,2 @@
-import { Execute, Initialize } from "./pulse";
+import { Execute, Initialize } from "./client";
 export default { Execute, Initialize };
